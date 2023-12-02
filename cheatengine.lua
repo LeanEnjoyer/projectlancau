@@ -105,7 +105,10 @@ function Update:Window(title, icon,...)
 		
 		function TAB: AddToggle(name, default, callback)
 			local self = setmetatable({}, TAB)
-			return newTab: AddToggle(name, "", (default or false), callback)
+            if type(default) ~= "boolean" then
+                default = false
+            end
+			return newTab: AddToggle(name, "", default, callback)
 		end
 		
 		function TAB:AddKeybind(name, default, callback)
